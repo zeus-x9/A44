@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Notes</title>
+</head>
+<body>
+<h1>My Personal Notes</h1>
+
+<input type="text" id="noteTitle" placeholder="Enter note title">
+<br><br>
+<textarea id="noteContent" placeholder="Write your note"></textarea>
+<br><br>
+
+<button onclick="saveNote()">Save Note</button>
+<button onclick="displayNote()">Display Note</button>
+<button onclick="clearNote()">Clear Note</button>
+
+<h2 id="displayTitle"></h2>
+<p id="displayContent"></p>
+
+<script>
+const title = document.getElementById("noteTitle");
+const content = document.getElementById("noteContent");
+
+function saveNote() {
+  localStorage.setItem("noteTitle", title.value);
+  localStorage.setItem("noteContent", content.value);
+}
+
+function displayNote() {
+  title.value = localStorage.getItem("noteTitle");
+  content.value = localStorage.getItem("noteContent");
+}
+
+function clearNote() {
+  localStorage.removeItem("noteTitle");
+  localStorage.removeItem("noteContent");
+
+  document.getElementById("displayTitle").textContent = "";
+  document.getElementById("displayContent").textContent = "";
+  document.getElementById("noteTitle").value = "";
+  document.getElementById("noteContent").value = "";
+}
+</script>
+</body>
+</html>
